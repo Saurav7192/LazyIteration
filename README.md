@@ -37,42 +37,25 @@ This project simulates the behavior using:
 
 ### Class Structure
 
-```mermaid
+```java
 title Class Diagram
 classDiagram
     class Student {
-        +int id
-        +String name
-        +String subject
     }
     
     class Page {
-        +List<T> list
-        +int offset
     }
     
     class MySqlResponse {
-        +int offset
-        +int limit
-        +String columnCondition
-        +GetQuery getQuery
-        +boolean lastPage
-        +next() Page<Student>
-        +hasNext() boolean
     }
     
     class MySqlConnector {
-        +connect() Connection
     }
     
     class GetQuery {
-        +getAllStudents(String query) List<Student>
     }
     
     class CustomIterable {
-        <<interface>>
-        +next() Page<Student>
-        +hasNext() boolean
     }
     
     MySqlResponse --|> CustomIterable

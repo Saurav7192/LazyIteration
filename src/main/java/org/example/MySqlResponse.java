@@ -7,10 +7,10 @@ import java.util.Iterator;
 
 @Builder
 public class MySqlResponse<T> implements CustomIterable<T>{
-    int offset;
-    int limit;
-    String columnCondition;
-    GetQuery getQuery;
+    private int offset;
+    private int limit;
+    private String columnCondition;
+    private final GetQuery getQuery;
 
     public Page<Student> hasNext() throws SQLException {
 

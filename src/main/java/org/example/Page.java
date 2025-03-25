@@ -1,11 +1,13 @@
 package org.example;
 
 import lombok.Builder;
+import lombok.Getter;
 
 import java.util.List;
 
 @Builder
+@Getter
 public class Page<T> {
-    List<T> list;
-    int offset;
+    private List<T> list;
+    private int offset;
 }

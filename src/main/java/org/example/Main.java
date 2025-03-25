@@ -19,7 +19,7 @@ public class Main {
                 .build();
        List<Student> list;
         do{
-            list = pageResponse.hasNext().list;
+            list = pageResponse.hasNext().getList();
             System.out.println(list);
         } while(!list.isEmpty());
     }

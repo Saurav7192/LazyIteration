@@ -1,7 +1,6 @@
 package org.example;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +12,7 @@ public class GetQuery {
         this.conn = conn;
     }
 
-    public List<Student> getAllStudents(int limit, int offset, String subject) throws SQLException {
-        var query = String.format("SELECT * FROM students WHERE subject='%s' LIMIT %d OFFSET %d", subject, limit, offset);
+    public List<Student> getAllStudents(String query) throws SQLException {
         var stmt = conn.prepareStatement(query);
         var result = stmt.executeQuery();
         var students = new ArrayList<Student>();

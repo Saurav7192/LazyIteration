@@ -1,19 +1,26 @@
 package org.example;
 
-import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
         System.out.println("Hello, World!");
-        Connection conn = null;
-        try{
-            conn = MySqlConnector.connect();
-            System.out.println("My Sql is connected...");
-        } catch (SQLException e) {
-            System.out.println("Db connection failed: "+e);
-        }
-        System.out.println(new GetQuery(conn).getAllStudents(10, 0, "English"));
 
+        var conn = MySqlConnector.connect();
+        System.out.println("My Sql is connected...");
+
+        var getQuery = new GetQuery(conn);
+
+        CustomIterable<Page<Student>> pageResponse = MySqlResponse.<Page<Student>>builder()
+                .getQuery(getQuery)
+                .columnCondition("English")
+                .limit(10)
+                .build();
+       List<Student> list;
+        do{
+            list = pageResponse.hasNext().list;
+            System.out.println(list);
+        } while(!list.isEmpty());
     }
 }

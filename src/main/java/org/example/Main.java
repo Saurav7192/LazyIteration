@@ -17,10 +17,11 @@ public class Main {
                 .columnCondition("English")
                 .limit(10)
                 .build();
-       List<Student> list;
-        do{
-            list = pageResponse.hasNext().getList();
-            System.out.println(list);
-        } while(!list.isEmpty());
+
+       while(pageResponse.hasNext()){
+           var res = pageResponse.next();
+           System.out.println(res.getList());
+           System.out.println(res.getOffset());
+       }
     }
 }
